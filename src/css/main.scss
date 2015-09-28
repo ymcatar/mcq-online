@@ -1,0 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700);
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.page-listGroupItem {
+    outline: none;
+}
+
+.page-options {
+
+    label {
+        width: 30px;
+    }
+
+    .page-option {
+        margin-left: 10px;
+        margin-right: 10px;
+        display: inline-block;
+    }
+}
+
+.page-main {
+    padding-bottom: 100px;
+
+    .alert {
+        margin-top: 10px;
+    }
+
+    label {
+        margin-right: 5px;
+    }
+}
+
+.page-header {
+    small {
+        margin-left: 10px;
+    }
+}
+
+.page-table {
+    th, td {
+        text-align: center;
+    }
+}
