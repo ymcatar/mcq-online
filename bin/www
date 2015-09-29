@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-require("babel/register");
-
 var app = require('../app');
 var debug = require('debug')('mcq-online:server');
 var http = require('http');
