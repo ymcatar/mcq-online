@@ -9,7 +9,8 @@ class Selector extends React.Component {
     constructor() {
         super();
         this.state = {
-            papers: []
+            papers: [],
+            loaded: false
         };
 
         this.loadPapers = this.loadPapers.bind(this);
@@ -21,7 +22,8 @@ class Selector extends React.Component {
             dataType: 'json',
             success: (data) => {
                 this.setState({
-                    papers: data
+                    papers: data,
+                    loaded: true
                 });
             }
         });
@@ -33,22 +35,28 @@ class Selector extends React.Component {
 
     render() {
 
-        let papers = this.state.papers.map((item, i) => (
-            <ListGroupItem
-                href={'/#/paper/' + item._id}>
-                {item.title}
-            </ListGroupItem>
-        ));
+        if(this.state.loaded) {
+            let papers = this.state.papers.map((item, i) => (
+                <ListGroupItem
+                    href={'/#/paper/' + item._id}>
+                    {item.title}
+                </ListGroupItem>
+            ));
 
-        return (
-            <Panel header='Select' bsStyle='info'>
-                <p>Click to select a paper.</p>
-                <hr />
-                <ListGroup>
-                    {papers}
-                </ListGroup>
-            </Panel>
-        );
+            return (
+                <Panel header='Select' bsStyle='info'>
+                    <p>Click to select a paper.</p>
+                    <hr />
+                    <ListGroup>
+                        {papers}
+                    </ListGroup>
+                </Panel>
+            );
+        } else {
+            return(
+                <span className='fa fa-2x fa-spin fa-spinner' />
+            );
+        }
     }
 }
 

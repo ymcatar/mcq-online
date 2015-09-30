@@ -48064,7 +48064,8 @@ var Selector = (function (_React$Component) {
 
         _get(Object.getPrototypeOf(Selector.prototype), 'constructor', this).call(this);
         this.state = {
-            papers: []
+            papers: [],
+            loaded: false
         };
 
         this.loadPapers = this.loadPapers.bind(this);
@@ -48080,7 +48081,8 @@ var Selector = (function (_React$Component) {
                 dataType: 'json',
                 success: function success(data) {
                     _this.setState({
-                        papers: data
+                        papers: data,
+                        loaded: true
                     });
                 }
             });
@@ -48094,30 +48096,34 @@ var Selector = (function (_React$Component) {
         key: 'render',
         value: function render() {
 
-            var papers = this.state.papers.map(function (item, i) {
-                return React.createElement(
-                    ListGroupItem,
-                    {
-                        href: '/#/paper/' + item._id },
-                    item.title
-                );
-            });
+            if (this.state.loaded) {
+                var papers = this.state.papers.map(function (item, i) {
+                    return React.createElement(
+                        ListGroupItem,
+                        {
+                            href: '/#/paper/' + item._id },
+                        item.title
+                    );
+                });
 
-            return React.createElement(
-                Panel,
-                { header: 'Select', bsStyle: 'info' },
-                React.createElement(
-                    'p',
-                    null,
-                    'Click to select a paper.'
-                ),
-                React.createElement('hr', null),
-                React.createElement(
-                    ListGroup,
-                    null,
-                    papers
-                )
-            );
+                return React.createElement(
+                    Panel,
+                    { header: 'Select', bsStyle: 'info' },
+                    React.createElement(
+                        'p',
+                        null,
+                        'Click to select a paper.'
+                    ),
+                    React.createElement('hr', null),
+                    React.createElement(
+                        ListGroup,
+                        null,
+                        papers
+                    )
+                );
+            } else {
+                return React.createElement('span', { className: 'fa fa-2x fa-spin fa-spinner' });
+            }
         }
     }]);
 
