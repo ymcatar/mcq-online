@@ -48163,7 +48163,8 @@ var ViewStats = (function (_React$Component) {
             var getStats = (function (data) {
                 var stats = {
                     length: data.length,
-                    distribution: {}
+                    distribution: {},
+                    users: []
                 };
 
                 data.forEach(function (item) {
@@ -48181,6 +48182,8 @@ var ViewStats = (function (_React$Component) {
 
                         stats.distribution[q][item.selected[q]]++;
                     }
+
+                    stats.users.push(item.user);
                 });
 
                 this.setState({
@@ -48239,72 +48242,109 @@ var ViewStats = (function (_React$Component) {
                     ));
                 }
 
-                return React.createElement(
-                    Panel,
-                    { header: 'Stats' },
-                    React.createElement(
-                        'span',
+                var users = this.state.stats.users.map(function (item) {
+                    return React.createElement(
+                        'tr',
                         null,
-                        'Total number of attempt: ',
-                        this.state.stats.length
-                    ),
-                    React.createElement('hr', null),
+                        React.createElement(
+                            'td',
+                            null,
+                            item
+                        )
+                    );
+                });
+
+                return React.createElement(
+                    'div',
+                    { className: 'row' },
                     React.createElement(
-                        Table,
-                        { striped: true, bordered: true, hover: true, className: 'page-table' },
+                        'div',
+                        { className: 'col-md-8' },
                         React.createElement(
-                            'thead',
-                            null,
+                            Panel,
+                            { header: 'Stats' },
                             React.createElement(
-                                'th',
+                                'span',
                                 null,
-                                '#'
+                                'Total number of attempt: ',
+                                this.state.stats.length
                             ),
+                            React.createElement('hr', null),
                             React.createElement(
-                                'th',
-                                null,
-                                'A'
-                            ),
-                            React.createElement(
-                                'th',
-                                null,
-                                'B'
-                            ),
-                            React.createElement(
-                                'th',
-                                null,
-                                'C'
-                            ),
-                            React.createElement(
-                                'th',
-                                null,
-                                'D'
-                            ),
-                            React.createElement(
-                                'th',
-                                null,
-                                'E'
-                            ),
-                            React.createElement(
-                                'th',
-                                null,
-                                'F'
-                            ),
-                            React.createElement(
-                                'th',
-                                null,
-                                'G'
-                            ),
-                            React.createElement(
-                                'th',
-                                null,
-                                'H'
+                                Table,
+                                { striped: true, bordered: true, hover: true, className: 'page-table' },
+                                React.createElement(
+                                    'thead',
+                                    null,
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        '#'
+                                    ),
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        'A'
+                                    ),
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        'B'
+                                    ),
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        'C'
+                                    ),
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        'D'
+                                    ),
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        'E'
+                                    ),
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        'F'
+                                    ),
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        'G'
+                                    ),
+                                    React.createElement(
+                                        'th',
+                                        null,
+                                        'H'
+                                    )
+                                ),
+                                React.createElement(
+                                    'tbody',
+                                    null,
+                                    content
+                                )
                             )
-                        ),
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'col-md-4' },
                         React.createElement(
-                            'tbody',
-                            null,
-                            content
+                            Panel,
+                            { header: 'Users' },
+                            React.createElement(
+                                Table,
+                                { hover: true },
+                                React.createElement(
+                                    'tbody',
+                                    null,
+                                    users
+                                )
+                            )
                         )
                     )
                 );

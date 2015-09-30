@@ -18,7 +18,8 @@ class ViewStats extends React.Component {
         let getStats = function(data) {
             let stats = {
                 length: data.length,
-                distribution: {}
+                distribution: {},
+                users: []
             };
 
             data.forEach((item) => {
@@ -37,6 +38,8 @@ class ViewStats extends React.Component {
 
                     stats.distribution[q][item.selected[q]]++;
                 }
+
+                stats.users.push(item.user);
             });
 
             this.setState({
@@ -86,28 +89,48 @@ class ViewStats extends React.Component {
                 );
             }
 
-            return (
-                <Panel header='Stats'>
-                    <span>Total number of attempt: {this.state.stats.length}</span>
-                    <hr />
-                    <Table striped bordered hover className='page-table'>
-                        <thead>
-                            <th>#</th>
-                            <th>A</th>
-                            <th>B</th>
-                            <th>C</th>
-                            <th>D</th>
-                            <th>E</th>
-                            <th>F</th>
-                            <th>G</th>
-                            <th>H</th>
-                        </thead>
+            let users = this.state.stats.users.map(item => (
+                <tr>
+                    <td>{item}</td>
+                </tr>
+            ));
 
-                        <tbody>
-                            {content}
-                        </tbody>
-                    </Table>
-                </Panel>
+            return (
+                <div className='row'>
+                    <div className='col-md-8'>
+                        <Panel header='Stats'>
+                            <span>Total number of attempt: {this.state.stats.length}</span>
+                            <hr />
+                            <Table striped bordered hover className='page-table'>
+                                <thead>
+                                    <th>#</th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>E</th>
+                                    <th>F</th>
+                                    <th>G</th>
+                                    <th>H</th>
+                                </thead>
+
+                                <tbody>
+                                    {content}
+                                </tbody>
+                            </Table>
+                        </Panel>
+                    </div>
+
+                    <div className='col-md-4'>
+                        <Panel header='Users'>
+                            <Table hover>
+                                <tbody>
+                                    {users}
+                                </tbody>
+                            </Table>
+                        </Panel>
+                    </div>
+                </div>
             );
         } else
             return null;
