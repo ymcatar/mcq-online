@@ -13,12 +13,16 @@ gulp.task('sass', function() {
 });
 
 gulp.task('jsx', function() {
-  browserify('./src/jsx/App.jsx', { debug: true })
-    .transform(babelify)
-    .bundle()
-    .on("error", function (err) { console.log("Error : " + err.message); })
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./public'));
+    browserify('./src/jsx/App.jsx', {
+            debug: true
+        })
+        .transform(babelify)
+        .bundle()
+        .on("error", function(err) {
+            console.log("Error : " + err.message);
+        })
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('./public'));
 });
 
 gulp.task('watch', function() {

@@ -13,6 +13,7 @@
     "express": "~4.12.2",
     "mongoose": "^4.1.8",
     "morgan": "~1.5.1",
+    "react": "^0.13.3",
     "serve-favicon": "~2.2.0"
   },
   "devDependencies": {
@@ -20,11 +21,12 @@
     "browserify": "^11.2.0",
     "gulp": "^3.9.0",
     "gulp-sass": "^2.0.4",
+    "vinyl-source-stream": "^1.1.0",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.25.2",
     "jquery-browserify": "^1.8.1",
     "js-cookie": "^2.0.3",
     "marked": "^0.3.5",
-    "react-bootstrap": "^0.25.2",
-    "react-router": "^1.0.0-rc1",
-    "vinyl-source-stream": "^1.1.0"
+    "react-router": "^1.0.0-rc1"
   }
 }
